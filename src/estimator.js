@@ -38,7 +38,7 @@ const impact = (data) => {
     hospitalBedsByRequestedTime,
     casesForICUByRequestedTime,
     casesForVentilatorsByRequestedTime,
-    dollarsInFlight
+    dollarsInFlight: dollarsInFlight.toFixed(1)
   };
 };
 
@@ -78,7 +78,7 @@ const severeImpact = (data) => {
     hospitalBedsByRequestedTime,
     casesForICUByRequestedTime,
     casesForVentilatorsByRequestedTime,
-    dollarsInFlight
+    dollarsInFlight: dollarsInFlight.toFixed(1)
   };
 };
 
