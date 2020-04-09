@@ -3,7 +3,7 @@ let numOfDays;
 let factor;
 
 const impact = (data) => {
-  const percentage = (num, percent) => Math.round((num / 100) * percent);
+  const percentage = (num, percent) => Math.floor((num / 100) * percent);
   const avgIncomePopulation = data.region.avgDailyIncomePopulation;
   const avgIncome = data.region.avgDailyIncomeInUSD;
 
