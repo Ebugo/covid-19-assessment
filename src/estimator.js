@@ -1,7 +1,7 @@
 /* eslint-disable linebreak-style */
 let numOfDays;
 let factor;
-const percentage = (num, percent) => Math.ceil((num / 100) * percent);
+const percentage = (num, percent) => Math.floor((num / 100) * percent);
 
 const impact = (data) => {
   const avgIncomePopulation = data.region.avgDailyIncomePopulation;
@@ -9,13 +9,13 @@ const impact = (data) => {
 
   if (data.periodType === 'days') {
     numOfDays = data.timeToElapse;
-    factor = Math.ceil(numOfDays / 3);
+    factor = Math.floor(numOfDays / 3);
   } else if (data.periodType === 'weeks') {
     numOfDays = data.timeToElapse * 7;
-    factor = Math.ceil(numOfDays / 3);
+    factor = Math.floor(numOfDays / 3);
   } else if (data.periodType === 'months') {
     numOfDays = data.timeToElapse * 30;
-    factor = Math.ceil(numOfDays / 3);
+    factor = Math.floor(numOfDays / 3);
   } else {
     return 'Invalid data type';
   }
@@ -48,13 +48,13 @@ const severeImpact = (data) => {
 
   if (data.periodType === 'days') {
     numOfDays = data.timeToElapse;
-    factor = Math.ceil(numOfDays / 3);
+    factor = Math.floor(numOfDays / 3);
   } else if (data.periodType === 'weeks') {
     numOfDays = data.timeToElapse * 7;
-    factor = Math.ceil(numOfDays / 3);
+    factor = Math.floor(numOfDays / 3);
   } else if (data.periodType === 'months') {
     numOfDays = data.timeToElapse * 30;
-    factor = Math.ceil(numOfDays / 3);
+    factor = Math.floor(numOfDays / 3);
   } else {
     return 'Invalid data type';
   }
