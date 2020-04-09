@@ -4,13 +4,14 @@ const percentage = (num, percent) => Math.round((num / 100) * percent);
 const impact = (data) => {
   const avgIncomePopulation = data.avgDailyIncomePopulation;
   const avgIncome = data.avgDailyIncomeInUSD;
+  let factor;
 
-  if (data.periodType == 'days') {
-    const factor = Math.round(data.timeToElapse / 3);
-  } else if (data.periodType == 'weeks') {
-    const factor = Math.round((data.timeToElapse * 7)/ 3);
-  } else if (data.periodType == 'months') {
-    const factor = Math.round((data.timeToElapse * 28) / 3);
+  if (data.periodType === 'days') {
+    factor = Math.round(data.timeToElapse / 3);
+  } else if (data.periodType === 'weeks') {
+    factor = Math.round((data.timeToElapse * 7) / 3);
+  } else if (data.periodType === 'months') {
+    factor = Math.round((data.timeToElapse * 28) / 3);
   } else {
     return 'Invalid data type';
   }
