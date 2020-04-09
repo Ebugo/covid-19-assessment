@@ -3,19 +3,19 @@ let numOfDays;
 let factor;
 
 const impact = (data) => {
-  const percentage = (num, percent) => Math.floor((num / 100) * percent);
+  const percentage = (num, percent) => Math.trunc((num / 100) * percent);
   const avgIncomePopulation = data.region.avgDailyIncomePopulation;
   const avgIncome = data.region.avgDailyIncomeInUSD;
 
   if (data.periodType === 'days') {
     numOfDays = data.timeToElapse;
-    factor = Math.floor(numOfDays / 3);
+    factor = Math.trunc(numOfDays / 3);
   } else if (data.periodType === 'weeks') {
     numOfDays = data.timeToElapse * 7;
-    factor = Math.floor(numOfDays / 3);
+    factor = Math.trunc(numOfDays / 3);
   } else if (data.periodType === 'months') {
     numOfDays = data.timeToElapse * 30;
-    factor = Math.floor(numOfDays / 3);
+    factor = Math.trunc(numOfDays / 3);
   } else {
     return 'Invalid data type';
   }
@@ -38,24 +38,24 @@ const impact = (data) => {
     hospitalBedsByRequestedTime,
     casesForICUByRequestedTime,
     casesForVentilatorsByRequestedTime,
-    dollarsInFlight: Math.floor(dollarsInFlight)
+    dollarsInFlight
   };
 };
 
 const severeImpact = (data) => {
-  const percentage = (num, percent) => Math.floor((num / 100) * percent);
+  const percentage = (num, percent) => Math.trunc((num / 100) * percent);
   const avgIncomePopulation = data.region.avgDailyIncomePopulation;
   const avgIncome = data.region.avgDailyIncomeInUSD;
 
   if (data.periodType === 'days') {
     numOfDays = data.timeToElapse;
-    factor = Math.floor(numOfDays / 3);
+    factor = Math.trunc(numOfDays / 3);
   } else if (data.periodType === 'weeks') {
     numOfDays = data.timeToElapse * 7;
-    factor = Math.floor(numOfDays / 3);
+    factor = Math.trunc(numOfDays / 3);
   } else if (data.periodType === 'months') {
     numOfDays = data.timeToElapse * 30;
-    factor = Math.floor(numOfDays / 3);
+    factor = Math.trunc(numOfDays / 3);
   } else {
     return 'Invalid data type';
   }
@@ -78,7 +78,7 @@ const severeImpact = (data) => {
     hospitalBedsByRequestedTime,
     casesForICUByRequestedTime,
     casesForVentilatorsByRequestedTime,
-    dollarsInFlight: Math.floor(dollarsInFlight)
+    dollarsInFlight
   };
 };
 
