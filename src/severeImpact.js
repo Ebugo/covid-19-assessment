@@ -1,9 +1,19 @@
 /* eslint-disable linebreak-style */
-const percentage = (num, percent) => Math.floor((num / 100) * percent);
+const percentage = (num, percent) => Math.round((num / 100) * percent);
 
 const severeImpact = (data) => {
   const avgIncomePopulation = data.avgDailyIncomePopulation;
   const avgIncome = data.avgDailyIncomeInUSD;
+
+  if (data.periodType == 'days') {
+    const factor = Math.round(data.timeToElapse / 3);
+  } else if (data.periodType == 'weeks') {
+    const factor = Math.round((data.timeToElapse * 7)/ 3);
+  } else if (data.periodType == 'months') {
+    const factor = Math.round((data.timeToElapse * 28) / 3);
+  } else {
+    return 'Invalid data type';
+  }
 
   const currentlyInfected = data.reportedCases * 50;
   const infectionsByRequestedTime = currentlyInfected * (2 ** 10);
