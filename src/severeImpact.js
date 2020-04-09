@@ -4,14 +4,18 @@ const percentage = (num, percent) => Math.round((num / 100) * percent);
 const severeImpact = (data) => {
   const avgIncomePopulation = data.avgDailyIncomePopulation;
   const avgIncome = data.avgDailyIncomeInUSD;
+  let numOfDays;
   let factor;
 
   if (data.periodType === 'days') {
-    factor = Math.round(data.timeToElapse / 3);
+    numOfDays = data.timeToElapse;
+    factor = Math.round(numOfDays / 3);
   } else if (data.periodType === 'weeks') {
-    factor = Math.round((data.timeToElapse * 7) / 3);
+    numOfDays = data.timeToElapse * 7;
+    factor = Math.round(numOfDays / 3);
   } else if (data.periodType === 'months') {
-    factor = Math.round((data.timeToElapse * 28) / 3);
+    numOfDays = data.timeToElapse * 28;
+    factor = Math.round(numOfDays / 3);
   } else {
     return 'Invalid data type';
   }
@@ -25,7 +29,7 @@ const severeImpact = (data) => {
 
   const casesForICUByRequestedTime = percentage(infectionsByRequestedTime, 5);
   const casesForVentilatorsByRequestedTime = percentage(infectionsByRequestedTime, 2);
-  const dollarsInFlight = (infectionsByRequestedTime * avgIncomePopulation) * avgIncome * 30;
+  const dollarsInFlight = (infectionsByRequestedTime * avgIncomePopulation) * avgIncome * numOfDays;
 
   return {
     currentlyInfected,
