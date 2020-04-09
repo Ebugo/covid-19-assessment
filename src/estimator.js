@@ -14,7 +14,7 @@ const impact = (data) => {
     numOfDays = data.timeToElapse * 7;
     factor = Math.round(numOfDays / 3);
   } else if (data.periodType === 'months') {
-    numOfDays = data.timeToElapse * 28;
+    numOfDays = data.timeToElapse * 30;
     factor = Math.round(numOfDays / 3);
   } else {
     return 'Invalid data type';
@@ -55,7 +55,7 @@ const severeImpact = (data) => {
     numOfDays = data.timeToElapse * 7;
     factor = Math.round(numOfDays / 3);
   } else if (data.periodType === 'months') {
-    numOfDays = data.timeToElapse * 28;
+    numOfDays = data.timeToElapse * 30;
     factor = Math.round(numOfDays / 3);
   } else {
     return 'Invalid data type';
