@@ -2,6 +2,9 @@
 const percentage = (num, percent) => Math.floor((num / 100) * percent);
 
 const severeImpact = (data) => {
+  const avgIncomePopulation = data.avgDailyIncomePopulation;
+  const avgIncome = data.avgDailyIncomeInUSD;
+
   const currentlyInfected = data.reportedCases * 50;
   const infectionsByRequestedTime = currentlyInfected * (2 ** 10);
 
@@ -11,7 +14,7 @@ const severeImpact = (data) => {
 
   const casesForICUByRequestedTime = percentage(infectionsByRequestedTime, 5);
   const casesForVentilatorsByRequestedTime = percentage(infectionsByRequestedTime, 2);
-  const dollarsInFlight = (infectionsByRequestedTime * data.avgDailyIncomePopulation) * data.avgDailyIncomeInUSD * 30;
+  const dollarsInFlight = (infectionsByRequestedTime * avgIncomePopulation) * avgIncome * 30;
 
   return {
     currentlyInfected,
