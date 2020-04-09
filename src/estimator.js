@@ -21,7 +21,7 @@ const impact = (data) => {
   }
 
   const currentlyInfected = data.reportedCases * 10;
-  const infectionsByRequestedTime = currentlyInfected * (2 ** factor);
+  const infectionsByRequestedTime = currentlyInfected * (2 ** factor) / 2;
 
   const severeCasesByRequestedTime = percentage(currentlyInfected, 15);
   const availableHospitalBeds = percentage(data.totalHospitalBeds, 35);
@@ -62,7 +62,7 @@ const severeImpact = (data) => {
   }
 
   const currentlyInfected = data.reportedCases * 50;
-  const infectionsByRequestedTime = currentlyInfected * (2 ** factor);
+  const infectionsByRequestedTime = currentlyInfected * (2 ** factor) / 2;
 
   const severeCasesByRequestedTime = percentage(currentlyInfected, 15);
   const availableHospitalBeds = percentage(data.totalHospitalBeds, 35);
