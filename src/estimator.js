@@ -1,7 +1,7 @@
 /* eslint-disable linebreak-style */
 let numOfDays;
 let factor;
-const percentage = (num, percent) => Math.floor((num / 100) * percent);
+const percentage = (num, percent) => ((num / 100) * percent);
 
 const impact = (data) => {
   const avgIncomePopulation = data.region.avgDailyIncomePopulation;
