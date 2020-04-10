@@ -29,7 +29,7 @@ const impact = (data) => {
 
   const casesForICUByRequestedTime = percentage(infectionsByRequestedTime, 5);
   const casesForVentilatorsByRequestedTime = percentage(infectionsByRequestedTime, 2);
-  const dollarsInFlight = (infectionsByRequestedTime * avgIncomePopulation) * avgIncome * numOfDays;
+  const dollarsInFlight = (infectionsByRequestedTime * avgIncomePopulation * avgIncome) / numOfDays;
 
   return {
     currentlyInfected,
@@ -68,7 +68,7 @@ const severeImpact = (data) => {
 
   const casesForICUByRequestedTime = percentage(infectionsByRequestedTime, 5);
   const casesForVentilatorsByRequestedTime = percentage(infectionsByRequestedTime, 2);
-  const dollarsInFlight = (infectionsByRequestedTime * avgIncomePopulation) * avgIncome * numOfDays;
+  const dollarsInFlight = (infectionsByRequestedTime * avgIncomePopulation * avgIncome) / numOfDays;
 
   return {
     currentlyInfected,
