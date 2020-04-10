@@ -35,7 +35,7 @@ const impact = (data) => {
     currentlyInfected,
     infectionsByRequestedTime,
     severeCasesByRequestedTime,
-    hospitalBedsByRequestedTime,
+    hospitalBedsByRequestedTime: Math.trunc(hospitalBedsByRequestedTime),
     casesForICUByRequestedTime,
     casesForVentilatorsByRequestedTime,
     dollarsInFlight
@@ -74,7 +74,7 @@ const severeImpact = (data) => {
     currentlyInfected,
     infectionsByRequestedTime,
     severeCasesByRequestedTime,
-    hospitalBedsByRequestedTime,
+    hospitalBedsByRequestedTime: Math.trunc(hospitalBedsByRequestedTime),
     casesForICUByRequestedTime,
     casesForVentilatorsByRequestedTime,
     dollarsInFlight
