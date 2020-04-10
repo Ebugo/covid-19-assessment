@@ -34,7 +34,7 @@ const impact = (data) => {
   return {
     currentlyInfected,
     infectionsByRequestedTime,
-    severeCasesByRequestedTime,
+    severeCasesByRequestedTime: Math.round(severeCasesByRequestedTime),
     hospitalBedsByRequestedTime: Math.trunc(hospitalBedsByRequestedTime),
     casesForICUByRequestedTime,
     casesForVentilatorsByRequestedTime,
@@ -73,7 +73,7 @@ const severeImpact = (data) => {
   return {
     currentlyInfected,
     infectionsByRequestedTime,
-    severeCasesByRequestedTime,
+    severeCasesByRequestedTime: Math.round(severeCasesByRequestedTime),
     hospitalBedsByRequestedTime: Math.trunc(hospitalBedsByRequestedTime),
     casesForICUByRequestedTime: Math.trunc(casesForICUByRequestedTime),
     casesForVentilatorsByRequestedTime: Math.trunc(casesForVentilatorsByRequestedTime),
