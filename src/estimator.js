@@ -27,8 +27,8 @@ const impact = (data) => {
   const availableHospitalBeds = percentage(data.totalHospitalBeds, 35);
   const hospitalBedsByRequestedTime = availableHospitalBeds - severeCasesByRequestedTime;
 
-  const casesForICUByRequestedTime = Math.floor(percentage(infectionsByRequestedTime, 5));
-  const casesForVentilatorsByRequestedTime = Math.floor(percentage(infectionsByRequestedTime, 2));
+  const casesForICUByRequestedTime = percentage(infectionsByRequestedTime, 5);
+  const casesForVentilatorsByRequestedTime = percentage(infectionsByRequestedTime, 2);
   const dollarsInFlight = (infectionsByRequestedTime * avgIncomePopulation) * avgIncome * numOfDays;
 
   return {
@@ -75,8 +75,8 @@ const severeImpact = (data) => {
     infectionsByRequestedTime,
     severeCasesByRequestedTime,
     hospitalBedsByRequestedTime: Math.trunc(hospitalBedsByRequestedTime),
-    casesForICUByRequestedTime,
-    casesForVentilatorsByRequestedTime,
+    casesForICUByRequestedTime: Math.trunc(casesForICUByRequestedTime),
+    casesForVentilatorsByRequestedTime: Math.trunc(casesForVentilatorsByRequestedTime),
     dollarsInFlight: Math.trunc(dollarsInFlight)
   };
 };
