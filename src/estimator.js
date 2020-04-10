@@ -36,8 +36,8 @@ const impact = (data) => {
     infectionsByRequestedTime,
     severeCasesByRequestedTime: Math.round(severeCasesByRequestedTime),
     hospitalBedsByRequestedTime: Math.trunc(hospitalBedsByRequestedTime),
-    casesForICUByRequestedTime,
-    casesForVentilatorsByRequestedTime,
+    casesForICUByRequestedTime: Math.trunc(casesForICUByRequestedTime),
+    casesForVentilatorsByRequestedTime: Math.trunc(casesForVentilatorsByRequestedTime),
     dollarsInFlight: Math.trunc(dollarsInFlight)
   };
 };
