@@ -9,13 +9,13 @@ const impact = (data) => {
 
   if (data.periodType === 'days') {
     numOfDays = data.timeToElapse;
-    factor = Math.floor(numOfDays / 3);
+    factor = Math.trunc(numOfDays / 3);
   } else if (data.periodType === 'weeks') {
     numOfDays = data.timeToElapse * 7;
-    factor = Math.floor(numOfDays / 3);
+    factor = Math.trunc(numOfDays / 3);
   } else if (data.periodType === 'months') {
     numOfDays = data.timeToElapse * 30;
-    factor = Math.floor(numOfDays / 3);
+    factor = Math.trunc(numOfDays / 3);
   } else {
     return 'Invalid data type';
   }
@@ -27,8 +27,8 @@ const impact = (data) => {
   const availableHospitalBeds = percentage(data.totalHospitalBeds, 35);
   const hospitalBedsByRequestedTime = availableHospitalBeds - severeCasesByRequestedTime;
 
-  const casesForICUByRequestedTime = percentage(Math.trunc(infectionsByRequestedTime), 5);
-  const casesForVentilatorsByRequestedTime = percentage(Math.trunc(infectionsByRequestedTime), 2);
+  const casesForICUByRequestedTime = percentage(infectionsByRequestedTime, 5);
+  const casesForVentilatorsByRequestedTime = percentage(infectionsByRequestedTime, 2);
   const dollarsInFlight = (infectionsByRequestedTime * avgIncomePopulation) * avgIncome * numOfDays;
 
   return {
@@ -48,13 +48,13 @@ const severeImpact = (data) => {
 
   if (data.periodType === 'days') {
     numOfDays = data.timeToElapse;
-    factor = Math.floor(numOfDays / 3);
+    factor = Math.trunc(numOfDays / 3);
   } else if (data.periodType === 'weeks') {
     numOfDays = data.timeToElapse * 7;
-    factor = Math.floor(numOfDays / 3);
+    factor = Math.trunc(numOfDays / 3);
   } else if (data.periodType === 'months') {
     numOfDays = data.timeToElapse * 30;
-    factor = Math.floor(numOfDays / 3);
+    factor = Math.trunc(numOfDays / 3);
   } else {
     return 'Invalid data type';
   }
