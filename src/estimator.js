@@ -27,8 +27,8 @@ const impact = (data) => {
   const availableHospitalBeds = percentage(data.totalHospitalBeds, 35);
   const hospitalBedsByRequestedTime = availableHospitalBeds - severeCasesByRequestedTime;
 
-  const casesForICUByRequestedTime = percentage(infectionsByRequestedTime, 2);
-  const casesForVentilatorsByRequestedTime = percentage(infectionsByRequestedTime, 5);
+  const casesForICUByRequestedTime = percentage(infectionsByRequestedTime, 3);
+  const casesForVentilatorsByRequestedTime = percentage(infectionsByRequestedTime, 2);
   const dollarsInFlight = (infectionsByRequestedTime * avgIncomePopulation) * avgIncome * numOfDays;
 
   return {
