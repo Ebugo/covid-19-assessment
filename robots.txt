@@ -1,0 +1,6 @@
+# start of file
+User-agent: *
+Disallow: /downloads/
+
+User-agent: *
+Allow: /

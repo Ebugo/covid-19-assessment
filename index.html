@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Covid Impact Estimator</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="Description" content="A COVID-19 impact estimator - Andela build for SDGs challenge">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #F5F6FB;
+    }
+
+    .navbar {
+      background-color: #ffffff;
+    }
+
+    h5 {
+      font-weight: 700 !important;
+      font-size: 1rem;
+    }
+
+    .sidebar {
+      background-color: #ffffff;
+      min-height: 100vh;
+    }
+
+    .nav-pills .nav-link {
+      background-color: transparent !important;
+      color: #808D93;
+    }
+
+    .nav-pills .nav-link:hover {
+      color: #0E78E0;
+    }
+
+    .nav-pills .nav-link.active {
+      color: #0E78E0;
+      border: #0E78E0;
+      border-left: solid 3px;
+      border-radius: 0;
+    }
+
+    .highlight {
+      padding: 20px 10px;
+      border-radius: 5px;
+      box-shadow: 0px 0px 20px rgba(25, 142, 255, 0.11);
+      background-color: #fff;
+      width: 100% !important;
+    }
+
+    .report>div {
+      padding: 5px;
+    }
+
+  </style>
+</head>
+<body>
+  <nav class="navbar fixed-top navbar-light">
+    <a class="navbar-brand" href="#">COVID Estimator</a>
+    <!-- <ul class="navbar navbar-right">
+      <li class="nav-link">
+        <a href="#v-pills-dashboard">Dashboard</a>
+      </li>
+      <li class="nav-link">
+        <a href="#v-pills-about">About</a>
+      </li>
+    </ul> -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>  
+    <div class="collapse navbar-collapse text-right" id="navbarTogglerDemo03">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item active">
+          <a class="nav-link" href="#v-pills-dashboard">Dashboard <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#v-pills-about">About</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <section class="container-fluid mt-3">
+    <div class="row">
+      <div class="col-md-3 d-none d-md-block sidebar py-5">
+        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+          <a class="nav-link active" id="v-pills-dashboard-tab" data-toggle="pill" href="#v-pills-dashboard" role="tab" aria-controls="v-pills-dashboard" aria-selected="true">Dashboard</a>
+          <a class="nav-link" id="v-pills-about-tab" data-toggle="pill" href="#v-pills-about" role="tab" aria-controls="v-pills-about" aria-selected="false">About</a>
+        </div>
+      </div>
+      <div class="col-md-9 py-5">
+        <div class="tab-content" id="v-pills-tabContent">
+          <div class="tab-pane fade show active" id="v-pills-dashboard" role="tabpanel" aria-labelledby="v-pills-dashboard-tab">
+            <div class="container-fluid">
+              <div class="row report">
+                <div class="col-md-12">
+                  <div class="highlight">
+                    <form action="#" class="col-md-11 m-auto" onsubmit="return false;">
+                      <h3 class="bold">Fill in the data below!</h3>
+                      <h5>Details of Region: </h5>
+                      <div class="form-group">
+                        <label for="regionName">Region Name</label>
+                        <input required type="text" class="form-control" name="regionName" id="regionName" placeholder="Region Name">
+                      </div>
+                      <div class="form-group">
+                        <label for="avgAge">Region Average Age</label>
+                        <input required type="number" class="form-control" name="avgAge" id="avgAge"" placeholder="Region Average Age">
+                      </div>
+                      <div class="form-group">
+                        <label for="avgDailyIncomeInUSD">Region Average Daily Income (USD)</label>
+                        <input required type="text" class="form-control" name="avgDailyIncomeInUSD" id="avgDailyIncomeInUSD" placeholder="Region Average Daily Income (USD)">
+                      </div>
+                      <div class="form-group">
+                        <label for="avgDailyIncomePopulation">Region Average Daily Income Population</label>
+                        <input required type="text" class="form-control" name="avgDailyIncomePopulation" id="avgDailyIncomePopulation" placeholder="Region Average Daily Income Population">
+                      </div>
+                      <h5>Others: </h5>
+                      <div class="form-group">
+                        <label for="periodType">Period Type</label>
+                        <select type="text" class="form-control" data-period-type name="periodType" id="periodType" placeholder="Period Type" required>
+                          <option value="days">Days</option>
+                          <option value="weeks">Weeks</option>
+                          <option value="months">Months</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="timeToElapse">Time to Elapse</label>
+                        <input required type="number" class="form-control" data-time-to-elapse name="timeToElapse" id="timeToElapse" placeholder="Time To Elapse">
+                      </div>
+                      <div class="form-group">
+                        <label for="reportedCases">Reported Cases</label>
+                        <input required type="number" class="form-control" data-reported-cases name="reportedCases" id="reportedCases" placeholder="Reported Cases">
+                      </div>
+                      <div class="form-group">
+                        <label for="population">Population</label>
+                        <input required type="number" class="form-control" data-population name="population" id="population" placeholder="Population">
+                      </div>
+                      <div class="form-group">
+                        <label for="totalHospitalBeds">Total Hospital Beds</label>
+                        <input required type="number" class="form-control" data-total-hospital-beds name="totalHospitalBeds" id="totalHospitalBeds" placeholder="Total Hospital Beds">
+                      </div>
+                      <br>
+                      <button
+                        class="btn btn-info"
+                        style="margin: 0 5px 0  0;"
+                        onclick="onViewEstimate()" data-go-estimate type="submit">View Estimate</button>
+                      <button
+                        class="btn btn-danger"
+                        onclick="onReset()" type="reset">Reset Data</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div class="row report">
+                <div class="col-md-12">
+                  <div class="highlight px-md-5 px-4">
+                    <h5 class="mb-5">Estimated Result:</h5>
+                    <p id="result">
+                      <span>No estimate yet.</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="v-pills-about" role="tabpanel" aria-labelledby="v-pills-about-tab">
+            <div class="row report">
+              <div class="col-md-12">
+                <div class="highlight">
+                  <h5>About App</h5>
+                  <p>
+                    This COVID-19 Estimator was built by Gospel Chinyereugo (Codebug) in the course of the Andela Build for SDGs Challenge.
+                  </p>
+                  <p>
+                    You can reach him via mail to <a href="mailto:gospelokpara@gmail.com">gospelokpara (at) gmail.com</a>
+                  </p>
+                  <p>
+                    View my portfolio here <a href="https://gospel-chinyereugo.netlify.com/">Reach me!</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <script src="./src/estimator.js"></script>
+</body>
+</html>
