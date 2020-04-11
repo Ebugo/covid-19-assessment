@@ -112,29 +112,34 @@ const onViewEstimate = () => {
     totalHospitalBeds: info.totalHospitalBeds.value
   }
   const result = covid19ImpactEstimator(infoData);
-
-  resultDiv.innerHTML = `
-    <div class="list-group-item clearfix">
-      <strong class="list-group-item-heading">Impact Data for ${ result.data.region.name } - </strong><br><br>
-      <p>Currently Infected = ${ result.impact.currentlyInfected }</p>
-      <p>Infections By Requested Time = ${ result.impact.infectionsByRequestedTime }</p>
-      <p>Severe Cases By Requested Time = ${ result.impact.severeCasesByRequestedTime }</p>
-      <p>Hospital Beds By Requested Time = ${ result.impact.hospitalBedsByRequestedTime }</p>
-      <p>Cases For ICU By Requested Time = ${ result.impact.casesForICUByRequestedTime }</p>
-      <p>Cases For Ventilators By Requested Time = ${ result.impact.casesForVentilatorsByRequestedTime }</p>
-      <p>Dollars In Flight = ${ result.impact.dollarsInFlight }</p>
-    </div>
-    <div class="list-group-item clearfix">
-      <strong class="list-group-item-heading">Severe Data - </strong><br><br>
-      <p>Currently Infected = ${ result.severeImpact.currentlyInfected }</p>
-      <p>Infections By Requested Time = ${ result.severeImpact.infectionsByRequestedTime }</p>
-      <p>Severe Cases By Requested Time = ${ result.severeImpact.severeCasesByRequestedTime }</p>
-      <p>Hospital Beds By Requested Time = ${ result.severeImpact.hospitalBedsByRequestedTime }</p>
-      <p>Cases For ICU By Requested Time = ${ result.severeImpact.casesForICUByRequestedTime }</p>
-      <p>Cases For Ventilators By Requested Time = ${ result.severeImpact.casesForVentilatorsByRequestedTime }</p>
-      <p>Dollars In Flight = ${ result.severeImpact.dollarsInFlight }</p>
-    </div>
-  `
+  if (isNaN(result.impact.dollarsInFlight)) {
+    resultDiv.innerHTML = `
+      <span>No estimate yet.</span>
+    `
+  } else {
+    resultDiv.innerHTML = `
+      <div class="list-group-item clearfix">
+        <strong class="list-group-item-heading">Impact Data for ${ result.data.region.name } - </strong><br><br>
+        <p>Currently Infected = ${ result.impact.currentlyInfected }</p>
+        <p>Infections By Requested Time = ${ result.impact.infectionsByRequestedTime }</p>
+        <p>Severe Cases By Requested Time = ${ result.impact.severeCasesByRequestedTime }</p>
+        <p>Hospital Beds By Requested Time = ${ result.impact.hospitalBedsByRequestedTime }</p>
+        <p>Cases For ICU By Requested Time = ${ result.impact.casesForICUByRequestedTime }</p>
+        <p>Cases For Ventilators By Requested Time = ${ result.impact.casesForVentilatorsByRequestedTime }</p>
+        <p>Dollars In Flight = ${ result.impact.dollarsInFlight }</p>
+      </div>
+      <div class="list-group-item clearfix">
+        <strong class="list-group-item-heading">Severe Data - </strong><br><br>
+        <p>Currently Infected = ${ result.severeImpact.currentlyInfected }</p>
+        <p>Infections By Requested Time = ${ result.severeImpact.infectionsByRequestedTime }</p>
+        <p>Severe Cases By Requested Time = ${ result.severeImpact.severeCasesByRequestedTime }</p>
+        <p>Hospital Beds By Requested Time = ${ result.severeImpact.hospitalBedsByRequestedTime }</p>
+        <p>Cases For ICU By Requested Time = ${ result.severeImpact.casesForICUByRequestedTime }</p>
+        <p>Cases For Ventilators By Requested Time = ${ result.severeImpact.casesForVentilatorsByRequestedTime }</p>
+        <p>Dollars In Flight = ${ result.severeImpact.dollarsInFlight }</p>
+      </div>
+    `
+  }
 }
 
 const onReset = () => {
