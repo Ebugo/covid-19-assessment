@@ -114,7 +114,8 @@ const onViewEstimate = () => {
   const result = covid19ImpactEstimator(infoData);
   if (isNaN(result.impact.dollarsInFlight)) {
     resultDiv.innerHTML = `
-      <span>No estimate yet.</span>
+      <span>No estimate yet.</span><br>
+      <span>Input correct values please.</span>
     `
   } else {
     resultDiv.innerHTML = `
