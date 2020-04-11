@@ -2,7 +2,6 @@
 let numOfDays;
 let factor;
 const percentage = (num, percent) => ((num / 100) * percent);
-const resultDiv = document.getElementById('result');
 
 const impact = (data) => {
   const avgIncomePopulation = data.region.avgDailyIncomePopulation;
