@@ -30,6 +30,21 @@
       min-height: 100vh;
     }
 
+    @media screen and (max-width: 768px){
+      .sidebar {
+        z-index: 1;
+        position: fixed;
+        left: -100vw;
+        width: 100vw;
+        -moz-transition: 1s left;
+        transition: 1s left;
+      }
+
+      .show {
+        left: 0;
+      }
+    }
+
     .nav-pills .nav-link {
       background-color: transparent !important;
       color: #808D93;
@@ -58,36 +73,25 @@
       padding: 5px;
     }
 
+    .btn {
+      color: #000000;
+    }
   </style>
 </head>
 <body>
   <nav class="navbar fixed-top navbar-light">
     <a class="navbar-brand" href="#">COVID Estimator</a>
-    <!-- <ul class="navbar navbar-right">
-      <li class="nav-link">
-        <a href="#v-pills-dashboard">Dashboard</a>
-      </li>
-      <li class="nav-link">
-        <a href="#v-pills-about">About</a>
-      </li>
-    </ul> -->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler d-md-none" type="button" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle sidebar">
       <span class="navbar-toggler-icon"></span>
-    </button>  
-    <div class="collapse navbar-collapse text-right" id="navbarTogglerDemo03">
-      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-        <li class="nav-item active">
-          <a href="https://gospel-chinyereugo.netlify.com/">Reach me!</a>
-        </li>
-      </ul>
-    </div>
+    </button>
   </nav>
   <section class="container-fluid mt-3">
     <div class="row">
-      <div class="col-md-3 d-none d-md-block sidebar py-5">
+      <div class="col-md-3 d-md-block sidebar py-5">
         <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
           <a class="nav-link active" id="v-pills-dashboard-tab" data-toggle="pill" href="#v-pills-dashboard" role="tab" aria-controls="v-pills-dashboard" aria-selected="true">Dashboard</a>
           <a class="nav-link" id="v-pills-about-tab" data-toggle="pill" href="#v-pills-about" role="tab" aria-controls="v-pills-about" aria-selected="false">About</a>
+          <a class="nav-link" href="https://gospel-chinyereugo.netlify.com/" target="_blank">Reach me!</a>
         </div>
       </div>
       <div class="col-md-9 py-5">
@@ -166,19 +170,21 @@
             </div>
           </div>
           <div class="tab-pane fade" id="v-pills-about" role="tabpanel" aria-labelledby="v-pills-about-tab">
-            <div class="row report">
-              <div class="col-md-12">
-                <div class="highlight">
-                  <h5>About App</h5>
-                  <p>
-                    This COVID-19 Estimator was built by Gospel Chinyereugo (Codebug) in the course of the Andela Build for SDGs Challenge.
-                  </p>
-                  <p>
-                    You can reach him via mail to <a href="mailto:gospelokpara@gmail.com">gospelokpara (at) gmail.com</a>
-                  </p>
-                  <p>
-                    View my portfolio here <a href="https://gospel-chinyereugo.netlify.com/">Reach me!</a>
-                  </p>
+            <div class="container-fluid">
+              <div class="row report">
+                <div class="col-md-12">
+                  <div class="highlight px-md-5 px-4">
+                    <h5>About App</h5>
+                    <p>
+                      This COVID-19 Estimator was built by Gospel Chinyereugo (Codebug) in the course of the Andela Build for SDGs Challenge.
+                    </p>
+                    <p>
+                      You can reach him via mail to <a href="mailto:gospelokpara@gmail.com">gospelokpara (at) gmail.com</a>
+                    </p>
+                    <p>
+                      View my portfolio here <a href="https://gospel-chinyereugo.netlify.com/">Reach me!</a>
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -192,5 +198,10 @@
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   <script src="main.js"></script>
+  <script>
+    document.querySelector('.navbar-toggler').addEventListener('click', () => {
+      document.querySelector('.sidebar').classList.toggle('show');
+    });
+  </script>
 </body>
 </html>
