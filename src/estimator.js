@@ -96,11 +96,26 @@ const onViewEstimate = () => {
     </div>
   </div>
   `;
-  const result = covid19ImpactEstimator();
+
+  const info = document.querySelector('form');
+  const infoData = {
+    region: {
+      name: info.regionName.value,
+      avgAge: info.avgAge.value,
+      avgDailyIncomeInUSD: info.avgDailyIncomeInUSD.value,
+      avgDailyIncomePopulation: info.avgDailyIncomePopulation.value
+      },
+    periodType: info.periodType.value,
+    timeToElapse: info.timeToElapse.value,
+    reportedCases: info.reportedCases.value,
+    population: info.population.value,
+    totalHospitalBeds: info.totalHospitalBeds.value
+  }
+  const result = covid19ImpactEstimator(infoData);
 
   resultDiv.innerHTML = `
     <div class="list-group-item clearfix">
-      <strong class="list-group-item-heading">Impact Data - </strong><br><br>
+      <strong class="list-group-item-heading">Impact Data for ${ result.data.region.name } - </strong><br><br>
       <p>Currently Infected = ${ result.impact.currentlyInfected }</p>
       <p>Infections By Requested Time = ${ result.impact.infectionsByRequestedTime }</p>
       <p>Severe Cases By Requested Time = ${ result.impact.severeCasesByRequestedTime }</p>
