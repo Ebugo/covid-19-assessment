@@ -2,6 +2,7 @@
 let numOfDays;
 let factor;
 const percentage = (num, percent) => ((num / 100) * percent);
+const resultDiv = document.getElementById('result');
 
 const impact = (data) => {
   const avgIncomePopulation = data.region.avgDailyIncomePopulation;
@@ -87,4 +88,63 @@ const covid19ImpactEstimator = (data) => ({
   severeImpact: severeImpact(data)
 });
 
-export default covid19ImpactEstimator;
+const onViewEstimate = () => {
+  resultDiv.innerHTML = `
+  <div class="d-flex justify-content-center">
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+  `;
+
+  const info = document.querySelector('form');
+  const infoData = {
+    region: {
+      name: info.regionName.value,
+      avgAge: info.avgAge.value,
+      avgDailyIncomeInUSD: info.avgDailyIncomeInUSD.value,
+      avgDailyIncomePopulation: info.avgDailyIncomePopulation.value
+      },
+    periodType: info.periodType.value,
+    timeToElapse: info.timeToElapse.value,
+    reportedCases: info.reportedCases.value,
+    population: info.population.value,
+    totalHospitalBeds: info.totalHospitalBeds.value
+  }
+  const result = covid19ImpactEstimator(infoData);
+  if (isNaN(result.impact.dollarsInFlight)) {
+    resultDiv.innerHTML = `
+      <span>No estimate yet.</span><br><br>
+      <span style="color:red">Input correct values please.</span>
+    `
+  } else {
+    resultDiv.innerHTML = `
+      <div class="list-group-item clearfix">
+        <strong class="list-group-item-heading">Impact Data for ${ result.data.region.name } - </strong><br><br>
+        <p>Currently Infected = ${ result.impact.currentlyInfected }</p>
+        <p>Infections By Requested Time = ${ result.impact.infectionsByRequestedTime }</p>
+        <p>Severe Cases By Requested Time = ${ result.impact.severeCasesByRequestedTime }</p>
+        <p>Hospital Beds By Requested Time = ${ result.impact.hospitalBedsByRequestedTime }</p>
+        <p>Cases For ICU By Requested Time = ${ result.impact.casesForICUByRequestedTime }</p>
+        <p>Cases For Ventilators By Requested Time = ${ result.impact.casesForVentilatorsByRequestedTime }</p>
+        <p>Dollars In Flight = ${ result.impact.dollarsInFlight }</p>
+      </div>
+      <div class="list-group-item clearfix">
+        <strong class="list-group-item-heading">Severe Data - </strong><br><br>
+        <p>Currently Infected = ${ result.severeImpact.currentlyInfected }</p>
+        <p>Infections By Requested Time = ${ result.severeImpact.infectionsByRequestedTime }</p>
+        <p>Severe Cases By Requested Time = ${ result.severeImpact.severeCasesByRequestedTime }</p>
+        <p>Hospital Beds By Requested Time = ${ result.severeImpact.hospitalBedsByRequestedTime }</p>
+        <p>Cases For ICU By Requested Time = ${ result.severeImpact.casesForICUByRequestedTime }</p>
+        <p>Cases For Ventilators By Requested Time = ${ result.severeImpact.casesForVentilatorsByRequestedTime }</p>
+        <p>Dollars In Flight = ${ result.severeImpact.dollarsInFlight }</p>
+      </div>
+    `
+  }
+}
+
+const onReset = () => {
+  resultDiv.innerHTML = `
+    <span>No estimate yet.</span>
+  `
+}
